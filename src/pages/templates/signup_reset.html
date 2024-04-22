@@ -1,0 +1,10 @@
+<h2>Sign up(2/2)</h2>
+<form method="post">
+    {% csrf_token %}
+    <p>Input your reset keyword</p>
+    <input type="text" name="reset">
+    <button type="submit">Done</button>
+</form>
+{% if blank %}
+<h2>Blank space is not allowed.</h2>
+{% endif %}
