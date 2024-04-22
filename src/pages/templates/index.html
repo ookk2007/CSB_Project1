@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Secure Community</title>
+    </head>
+
+
+    <body>
+		<h1>No.1 Secure Community in the World!!</h1>
+
+        <table>
+		<tr>
+		<th style="text-align:left">Username: <td>{{user.username}} 
+		<tr>
+		<th style="text-align:left">My post:  <td>{{Mypost}}
+		</table>
+
+
+        <form action='/logout/' method="POST">
+			{% csrf_token %}
+            <input type="submit" value="Logout"/>
+        </form>
+
+        <input type="button" value="Create Post" onClick="location.href='/create-post'">
+        <input type="button" value="Change Reset Keyword" onclick="location.href='/signup-reset'">
+        <input type="button" value="Change Password" onclick="location.href='/password-reset'">
+		
+        <h2>Search Posts</h2>
+        <form action="/search/" method="GET">
+            <input type="text" id="search" name="search">
+            <button type="submit">Search</button>
+        </form>
+        {% if is_searched %}
+        <h2>Search Result</h2>
+        <ul>
+            {% for post in result %}
+                <li><a href="/post-detail/{{post.0}}">{{ post.1 }}</a></li>
+            {% empty %}
+                <li>No posts found.</li>
+            {% endfor %}
+        </ul>
+        <input type="button" value="Back" onClick="location.href='/'">
+        {% else %}
+        <h2>Full Posts</h2>
+        {% for post in Posts %}
+        <a href="/post-detail/{{post.id}}">{{post.title}}</a><br>
+        {% endfor %}
+
+        {% endif %}
+    </body>
+</html>

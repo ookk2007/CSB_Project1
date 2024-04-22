@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Post</title>
+    <script>
+        window.onload = function() {
+            confirmDelete();
+        };
+
+        function confirmDelete() {
+            var result = confirm("Are you sure you want to delete '{{ post.title }}'?");
+
+            if (result) {
+                document.getElementById('delete-form').submit();
+            }
+        }
+    </script>
+</head>
+<body>
+    <form id="delete-form" method="post">
+        {% csrf_token %}
+    </form>
+</body>
+</html>
